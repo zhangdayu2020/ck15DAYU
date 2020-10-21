@@ -1,7 +1,16 @@
 import pytest
-
+import yaml
 from pythoncode.calculator import Calculator
 
+
+def get_datas():
+    with open( "./datas/calc.yml", encoding='utf-8' ) as f:
+        datas = yaml.safe_load( f )
+    add_datas = datas['add']['datas']
+    add_ids = datas['add']['ids']
+    print( add_ids )
+    print( add_datas )
+    return [add_datas, add_ids]
 
 class TestCalc:
     def setup_class(self):
@@ -18,9 +27,7 @@ class TestCalc:
     def teardown(self):
         print("Case ended")
     @pytest.mark.parametrize(
-        'a,b,expect', [
-            [100, 100, 200], [1, 3, 4], [0.1, 0.1, 0.2], [-1, 1, 0], [-2, 1, -1], [1, -0.99, 0.01]
-        ], ids=["case1", "case2", "case3", "case4", "case5", "case6"]
+        'a,b,expect', get_datas()[0], ids=get_datas()[1]
     )
     def test_add(self, a, b, expect):
         # calc = Calculator()
