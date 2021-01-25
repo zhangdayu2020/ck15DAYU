@@ -1,7 +1,4 @@
-from time import sleep, time
 
-import pytest
-import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -10,7 +7,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class Test_chrome:
     def setup(self):
-        self.driver = webdriver.Chrome()
+        path="/usr/local/bin/chromedriver"
+        self.driver = webdriver.Chrome(executable_path=path)
         self.driver.maximize_window()
         self.driver.implicitly_wait(5)
 

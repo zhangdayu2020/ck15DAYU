@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from appium.webdriver.common.mobileby import MobileBy
-from hamcrest import *
+# from hamcrest import *
 from appium import webdriver
 import pytest
 from time import sleep
@@ -18,7 +18,8 @@ class Test_app():
             # 默认是Android
             "platformName": "android",
             # adb devices的sn名称
-            "deviceName": "127.0.0.1:7555",
+            # "deviceName": "127.0.0.1:7555",
+            "deviceName": "emulator-5554",
             # 包名
             "appPackage": "com.xueqiu.android",
             # activity名字
@@ -26,7 +27,8 @@ class Test_app():
             "noReset": True,
             "unicodeKeyboard": True,
             "skipServerInstallation": True,
-            "resetKeyBoard": True
+            "resetKeyBoard": True,
+            # "automationName": "uiautomator1"
 
         }
         # 运行appium，前提是要打开appium server
@@ -36,7 +38,7 @@ class Test_app():
     def teardown(self):
         self.driver.find_element(MobileBy.ID, "com.xueqiu.android:id/action_close").click()
 
-    @pytest.mark.skip()
+    # @pytest.mark.skip()
     def test_firstappium(self):
         sleep(10)
         el8 = self.driver.find_element_by_id("com.xueqiu.android:id/tv_search")
